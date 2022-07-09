@@ -57,7 +57,10 @@ public class ImageOrganizerWindow {
 		picLabel.setLocation(550, 0);
 		c.add(picLabel);
 		
-		//loadImage("D:\\eclipse-workspace\\ImageOrganizer\\src\\test\\resources\\Images\\FUvCHwTWYAAZj6I.jpg");
+		progressLabel = new JLabel();
+		progressLabel.setSize(300, 25);
+		progressLabel.setLocation(250, 325);
+		c.add(progressLabel);
 	}
 	
 	public void show() {
@@ -72,9 +75,24 @@ public class ImageOrganizerWindow {
 			picLabel.setSize(600, 600);
 			picLabel.setLocation(550, 0);
 			c.add(picLabel);
+			
+			frame.repaint();
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public String GetChildDir(int ID) {
+		return childInputs[ID].getText();
+	}
+	
+	public String GetParentDir() {
+		return parentFolderInput.getText();
+	}
+	
+	public void SetProgress(String progress) {
+		progressLabel.setText(progress);
 	}
 	
 	private JFrame frame;
@@ -87,4 +105,6 @@ public class ImageOrganizerWindow {
 	private JButton[] childButtons;
 	
 	JLabel picLabel;
+	
+	JLabel progressLabel;
 }

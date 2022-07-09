@@ -13,6 +13,7 @@ public class ImageOrganizerButtonActionListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		System.out.println(ID);
+		controller.MoveCurrentImageToFolder(ID);
 	}
 	
 	private ImageOrganizerController controller;

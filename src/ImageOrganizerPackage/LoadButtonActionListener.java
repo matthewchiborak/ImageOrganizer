@@ -12,6 +12,7 @@ public class LoadButtonActionListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		System.out.println("Load");
+		controller.LoadParentDirectory();
 	}
 
 	private ImageOrganizerController controller;
