@@ -6,6 +6,7 @@ public class ImageOrganizer {
 
 		ImageOrganizerController controller = new ImageOrganizerController();
 		ImageOrganizerWindow window = new ImageOrganizerWindow(controller);
+		controller.setWindow(window);
 		window.show();
 	}
 

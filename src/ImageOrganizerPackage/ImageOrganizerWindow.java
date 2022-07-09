@@ -19,7 +19,6 @@ public class ImageOrganizerWindow {
 		frame = new JFrame();
 		frame.setBounds(300, 90, 1200, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.addKeyListener(controller);
 		frame.setTitle("Image Organizer");
 		frame.setLayout(null);
 		
@@ -33,6 +32,7 @@ public class ImageOrganizerWindow {
 		parentLoadButton = new JButton("Go");
 		parentLoadButton.setSize(50, 25);
 		parentLoadButton.setLocation(450, 0);
+		parentLoadButton.addActionListener(new LoadButtonActionListener(controller));
 		c.add(parentLoadButton);
 		
 		childInputs = new JTextField[10];
@@ -47,25 +47,34 @@ public class ImageOrganizerWindow {
 			childButtons[i] = new JButton();
 			childButtons[i].setSize(25, 25);
 			childButtons[i].setLocation(475, (i+1) * 30);
+			childButtons[i].setName(String.valueOf(i));
+			childButtons[i].addActionListener(new ImageOrganizerButtonActionListener(controller, i));
 			c.add(childButtons[i]);
 		}
 		
-		try {
-			final BufferedImage image = ImageIO.read(new File("D:\\eclipse-workspace\\ImageOrganizer\\src\\test\\resources\\Images\\FUvCHwTWYAAZj6I.jpg"));
-			Image scaledImage = image.getScaledInstance(600, 600, Image.SCALE_SMOOTH);
-			JLabel picLabel = new JLabel(new ImageIcon(scaledImage));
-			picLabel.setSize(600, 600);
-			picLabel.setLocation(550, 0);
-			
-			c.add(picLabel);
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		picLabel = new JLabel();
+		picLabel.setSize(600, 600);
+		picLabel.setLocation(550, 0);
+		c.add(picLabel);
+		
+		//loadImage("D:\\eclipse-workspace\\ImageOrganizer\\src\\test\\resources\\Images\\FUvCHwTWYAAZj6I.jpg");
 	}
 	
 	public void show() {
 		frame.setVisible(true);
+	}
+	
+	public void loadImage(String filePath){
+		try {
+			BufferedImage image = ImageIO.read(new File(filePath));
+			Image scaledImage = image.getScaledInstance(600, 600, Image.SCALE_SMOOTH);
+			picLabel = new JLabel(new ImageIcon(scaledImage));
+			picLabel.setSize(600, 600);
+			picLabel.setLocation(550, 0);
+			c.add(picLabel);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private JFrame frame;
@@ -76,4 +85,6 @@ public class ImageOrganizerWindow {
 	
 	private JTextField[] childInputs;
 	private JButton[] childButtons;
+	
+	JLabel picLabel;
 }
