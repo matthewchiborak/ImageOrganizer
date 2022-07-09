@@ -21,12 +21,7 @@ public class ImageOrganizerController {
 		
 		currentFile = 0;
 
-		while(!listOfFiles[currentFile].isFile())
-			currentFile++;
-		
-		window.loadImage(listOfFiles[currentFile].getAbsolutePath());
-		
-		window.SetProgress(String.valueOf(currentFile+1) + " of " + String.valueOf(listOfFiles.length));
+		LoadCurrentImage();
 	}
 	
 	public void MoveCurrentImageToFolder(int ID) {
@@ -40,6 +35,27 @@ public class ImageOrganizerController {
 		}
 	}
 	
+	public void SkipImage() {
+		
+		if(currentFile+1 >= listOfFiles.length)
+		{
+			window.SetProgress("Done");
+		}
+		
+		currentFile++;
+		
+		LoadCurrentImage();
+	}
+	
+	private void LoadCurrentImage()
+	{
+		while(!listOfFiles[currentFile].isFile())
+			currentFile++;
+		
+		window.loadImage(listOfFiles[currentFile].getAbsolutePath());
+		
+		window.SetProgress(String.valueOf(currentFile+1) + " of " + String.valueOf(listOfFiles.length));
+	}
 	
 	
 	private ImageOrganizerWindow window;

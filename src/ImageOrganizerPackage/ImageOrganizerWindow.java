@@ -27,6 +27,7 @@ public class ImageOrganizerWindow {
 		parentFolderInput = new JTextField();
 		parentFolderInput.setSize(450, 25);
 		parentFolderInput.setLocation(0, 0);
+		parentFolderInput.setText("D:\\eclipse-workspace\\ImageOrganizer\\src\\test\\resources\\Images");
 		c.add(parentFolderInput);
 		
 		parentLoadButton = new JButton("Go");
@@ -52,6 +53,12 @@ public class ImageOrganizerWindow {
 			c.add(childButtons[i]);
 		}
 		
+		skipButton = new JButton("Skip");
+		skipButton.setSize(74, 25);
+		skipButton.setLocation(425, 11 * 30);
+		skipButton.addActionListener(new SkipActionListener(controller));
+		c.add(skipButton);
+		
 		picLabel = new JLabel();
 		picLabel.setSize(600, 600);
 		picLabel.setLocation(550, 0);
@@ -69,6 +76,8 @@ public class ImageOrganizerWindow {
 	
 	public void loadImage(String filePath){
 		try {
+			c.remove(picLabel);
+			
 			BufferedImage image = ImageIO.read(new File(filePath));
 			Image scaledImage = image.getScaledInstance(600, 600, Image.SCALE_SMOOTH);
 			picLabel = new JLabel(new ImageIcon(scaledImage));
@@ -104,7 +113,9 @@ public class ImageOrganizerWindow {
 	private JTextField[] childInputs;
 	private JButton[] childButtons;
 	
-	JLabel picLabel;
+	private JButton skipButton;
 	
-	JLabel progressLabel;
+	private JLabel picLabel;
+	
+	private JLabel progressLabel;
 }
