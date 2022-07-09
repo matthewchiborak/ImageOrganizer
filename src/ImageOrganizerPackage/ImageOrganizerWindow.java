@@ -1,11 +1,7 @@
 package ImageOrganizerPackage;
 
-import java.awt.Component;
 import java.awt.Container;
-import java.awt.Frame;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Polygon;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -15,7 +11,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class ImageOrganizerWindow {
@@ -57,7 +52,8 @@ public class ImageOrganizerWindow {
 		
 		try {
 			final BufferedImage image = ImageIO.read(new File("D:\\eclipse-workspace\\ImageOrganizer\\src\\test\\resources\\Images\\FUvCHwTWYAAZj6I.jpg"));
-			JLabel picLabel = new JLabel(new ImageIcon(image));
+			Image scaledImage = image.getScaledInstance(600, 600, Image.SCALE_SMOOTH);
+			JLabel picLabel = new JLabel(new ImageIcon(scaledImage));
 			picLabel.setSize(600, 600);
 			picLabel.setLocation(550, 0);
 			
