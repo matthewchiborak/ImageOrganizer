@@ -27,7 +27,6 @@ public class ImageOrganizerWindow {
 		parentFolderInput = new JTextField();
 		parentFolderInput.setSize(450, 25);
 		parentFolderInput.setLocation(0, 0);
-		parentFolderInput.setText("D:\\eclipse-workspace\\ImageOrganizer\\src\\test\\resources\\Images");
 		c.add(parentFolderInput);
 		
 		parentLoadButton = new JButton("Go");

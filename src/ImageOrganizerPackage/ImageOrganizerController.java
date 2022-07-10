@@ -36,6 +36,7 @@ public class ImageOrganizerController {
 		File dest = new File(window.GetChildDir(ID) + "\\" + listOfFiles[currentFile].getName());
 		try {
 			copy(listOfFiles[currentFile], dest);
+			listOfFiles[currentFile].delete();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -67,7 +68,15 @@ public class ImageOrganizerController {
 	private void LoadCurrentImage()
 	{
 		while(!listOfFiles[currentFile].isFile())
+		{
+			if(currentFile+1 >= listOfFiles.length)
+			{
+				window.SetProgress("Done");
+				return;
+			}
+			
 			currentFile++;
+		}
 		
 		window.loadImage(listOfFiles[currentFile].getAbsolutePath());
 		
