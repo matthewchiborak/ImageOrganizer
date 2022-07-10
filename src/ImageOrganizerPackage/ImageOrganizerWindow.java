@@ -63,6 +63,12 @@ public class ImageOrganizerWindow {
 		picLabel.setLocation(550, 0);
 		c.add(picLabel);
 		
+		keyInput = new JTextField();
+		keyInput.setSize(450, 25);
+		keyInput.setLocation(0, 15 * 30);
+		keyInput.addKeyListener(new ChildFolderKeyListener(controller));
+		c.add(keyInput);
+		
 		progressLabel = new JLabel();
 		progressLabel.setSize(300, 25);
 		progressLabel.setLocation(250, 325);
@@ -117,4 +123,6 @@ public class ImageOrganizerWindow {
 	private JLabel picLabel;
 	
 	private JLabel progressLabel;
+	
+	private JTextField keyInput;
 }
