@@ -33,8 +33,8 @@ public class ImageOrganizerController {
 	
 	public void MoveCurrentImageToFolder(int ID) {
 		
-		if(window.GetChildDir(ID).isBlank())
-			return;
+		//if(window.GetChildDir(ID).isBlank())
+			//return;
 		
 		File dest = new File(window.GetChildDir(ID) + "\\" + listOfFiles[currentFile].getName());
 		try {
